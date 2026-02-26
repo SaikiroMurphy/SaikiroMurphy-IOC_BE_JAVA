@@ -55,6 +55,8 @@ public class MessageManager {
         for (Message message : messages) {
             System.out.println(message);
         }
+        System.out.println("------------------------------------------------------");
+
     }
 
     public void filterMessagesBySender(Scanner scanner) {
@@ -62,15 +64,18 @@ public class MessageManager {
         try {
             String name = scanner.nextLine();
             if (name.isBlank()) {
-                throw new IllegalArgumentException("Tên người gửi không được để trống");
+                throw new IllegalArgumentException("Tên người gửi không được để trống.");
             }
 
-            List<Message> retrieveMsg = messages.stream().filter(predicate -> predicate.getSender().equalsIgnoreCase(name)).toList();
+            List<Message> retrieveMsg = messages.stream().filter(predicate -> predicate.getSender().equals(name)).toList();
+
+            System.out.println("-------------------- KẾT QUẢ LỌC --------------------");
             for (Message message : retrieveMsg) {
                 System.out.println(message);
             }
+            System.out.println("------------------------------------------------------");
         } catch (IllegalArgumentException e) {
-            // TODO: handle exception
+            System.out.println(e.getMessage() + " Vui lòng nhập lại.");
         }
     }
 }
